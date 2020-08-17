@@ -16,7 +16,6 @@ export const connectUser = () => dispatch => {
   dispatch(startLogin());
 
   const options = {
-    mode: 'no-cors',
     headers: {
       'Access-Control-Allow-Origin': 'http://localhost:3000',
       // 'Accept': '*/*',
@@ -24,7 +23,7 @@ export const connectUser = () => dispatch => {
     }
   };
 
-  fetch('https://github.com/login/oauth/authorize?redirect_uri=http://localhost:3000', options)
+  fetch('https://github.com/login/oauth/authorize?redirect_uri=http://localhost:3000')
     .then(res => res.json())
     .then(payload => dispatch(successLogin(payload)))
     .catch(err => dispatch(errorLogin(err)));
