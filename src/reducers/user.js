@@ -1,6 +1,8 @@
 const initialState = {
+  userRepos: [],
   loading: false,
   user: {},
+  isLoggedIn: false,
   error: ''
 };
 
@@ -9,9 +11,15 @@ const user = (state = initialState, action) => {
     case 'START_LOGIN':
       return { ...state, loading: true, };
     case 'SUCCESS_LOGIN':
-      return { ...state, user: action.payload, loading: false };
+      return { ...state, user: action.user, loading: false, isLoggedIn: true };
     case 'ERROR_LOGIN':
-      return { ...state, error: action.error, loading: false };
+      return { ...state, error: 'Login failed!', loading: false, isLoggedIn: false };
+    case 'START_FETCH_USER_REPOS':
+      return { ...state, loading: true, };
+    case 'SUCCESS_FETCH_USER_REPOS':
+      return { ...state, userRepos: action.userRepos, loading: false };
+    case 'ERROR_FETCH_USER_REPOS':
+      return { ...state, error: 'Error loading repos!', loading: false };
     default:
       return state;
   };

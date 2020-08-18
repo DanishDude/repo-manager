@@ -1,3 +1,5 @@
+import { startRepoSearch } from "./repoSearch";
+
 export const startLogin = () => ({
   type: 'START_LOGIN'
 });
@@ -7,56 +9,52 @@ export const errorLogin = error => ({
   error
 });
 
-export const successLogin = payload => ({
+export const successLogin = user => ({
   type: 'SUCCESS_LOGIN',
-  payload
+  user
 });
 
-export const fetchAccessToken = code => dispatch => {
+export const userLogin = code => dispatch => {
   dispatch(startLogin());
 
   const client_id = process.env.REACT_APP_CLIENT_ID;
   const redirect_uri = process.env.REACT_APP_REDIRECT_URI;
   const client_secret = process.env.REACT_APP_CLIENT_SECRET;
   const proxy_uri = process.env.REACT_APP_PROXY_URI;
-  const target_uri = 'https://github.com/login/oauth/access_token'
 
   const requestData = { client_id, redirect_uri, client_secret, code };
 
-  const data = new FormData();
-  data.append("client_id", client_id);
-  data.append("client_secret", client_secret);
-  data.append("code", code);
-  data.append("redirect_uri", redirect_uri);
-
   const options = {
     method: 'POST',
-    headers: { 'Access-Control-Allow-Origin': '*' },
-    body: data // JSON.stringify(requestData)
+    body: JSON.stringify(requestData)
   };
 
-  console.log(proxy_uri, client_id, redirect_uri, client_secret, code);
-
-  fetch(proxy_uri + target_uri, options)
-    .then(res => res.text())
-    .then(paramsString => {
-      console.log(paramsString);
-      let params = new URLSearchParams(paramsString);
-      const access_token = params.get("access_token");
-      const scope = params.get("scope");
-      const token_type = params.get("token_type");
-
-      return fetch(
-        `https://api.github.com/user?scope=${scope}&token_type=${token_type}`,
-        {headers: { 'Authorization': 'token ' + access_token }}
-      );
-    })
+  fetch(proxy_uri, options)
     .then(res => res.json())
-    .then(payload => {
-      console.log('PAYLOAD: ', payload);
-      dispatch(successLogin(payload));
-    })
-    .catch(err => {
-      dispatch(errorLogin({...err, msg: 'Ah Dang!'}))
-    });
+    .then(user =>  dispatch(successLogin(user)))
+    .catch(err => dispatch(errorLogin(err)));
+};
+
+export const startFetchUserRepos = () => ({
+  type: 'START_FETCH_USER_REPOS'
+});
+
+export const errorFetchUserRepos = err => ({
+  type: 'ERROR_FETCH_USER_REPOS',
+  err
+});
+
+export const successFetchUserRepos = userRepos => ({
+  type: 'SUCCESS_FETCH_USER_REPOS',
+  userRepos
+});
+
+export const fetchUserRepos = repos_url => dispatch => {
+  dispatch(startRepoSearch());
+
+  fetch(repos_url)
+    .then(res => res.json())
+    .then(userRepos => {
+      dispatch(successFetchUserRepos(userRepos))})
+    .catch(err => dispatch(errorFetchUserRepos(err)));
 };

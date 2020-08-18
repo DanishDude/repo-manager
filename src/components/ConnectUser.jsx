@@ -1,7 +1,7 @@
 import React, {  useEffect, useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchAccessToken } from '../actions/user';
+import { userLogin } from '../actions/user';
 
 const ConnectUser = () => {
   const dispatch = useDispatch();
@@ -10,13 +10,13 @@ const ConnectUser = () => {
   const redirect_uri = process.env.REACT_APP_REDIRECT_URI;
 
   useEffect(() => {
-    const url = window.location.href;
-    const hasCode = url.includes("?code=");
+    const uri = window.location.href;
+    const hasCode = uri.includes("?code=");
 
     if (hasCode) {
-      const newUrl = url.split("?code=");
-      window.history.pushState({}, null, newUrl[0]);
-      dispatch(fetchAccessToken(newUrl[1]))
+      const newUri = uri.split("?code=");
+      window.history.pushState({}, null, newUri[0]);
+      dispatch(userLogin(newUri[1]))
     }
   }, [dispatch]);
 
@@ -24,11 +24,14 @@ const ConnectUser = () => {
     <div className="ConnectUser">
       <div>
         {avatar_url
-          ? <img src={avatar_url} alt="" />
+          ? <div>
+              <img src={avatar_url} alt="" />
+              You are connected
+            </div>
           : <a href={`https://github.com/login/oauth/authorize?scope=user
               &client_id=${client_id}&redirect_uri=${redirect_uri}`}
             >
-              Login with Guthub
+              Login with Github
             </a>}
       </div>
 
