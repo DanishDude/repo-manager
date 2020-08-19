@@ -1,11 +1,10 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import ConnectUser from './components/ConnectUser';
 import RepoTable from './components/RepoTable';
 import RepoSearch from './components/RepoSearch';
 import UserRepos from './components/UserRepos';
 import './App.css';
-import user from './reducers/user';
+import './Container.scss';
 
 function App() {
   // const { isLoggedIn } = useSelector(state => user)

@@ -19,6 +19,7 @@ const ConnectUser = () => {
       dispatch(userLogin(newUri[1]))
     }
   }, [dispatch]);
+  console.log(redirect_uri);
 
   return (
     <div className="ConnectUser">

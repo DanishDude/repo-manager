@@ -28,6 +28,7 @@ export const userLogin = code => dispatch => {
     method: 'POST',
     body: JSON.stringify(requestData)
   };
+  console.log('here');
 
   fetch(proxy_uri, options)
     .then(res => res.json())

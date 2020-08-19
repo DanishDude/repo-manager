@@ -15,7 +15,6 @@ app.use((req, res, next) => {
 
 app.post("/oauth", (req, res) => {
   const { client_id, redirect_uri, client_secret, code } = req.body;
-
   const data = new FormData();
   data.append("client_id", client_id);
   data.append("redirect_uri", redirect_uri);
