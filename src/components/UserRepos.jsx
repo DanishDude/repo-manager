@@ -18,9 +18,7 @@ const UserRepos = () => {
   return (
     <div className="UserRepos">
       <Button type="button" onClick={getUserRepos}>Get My Repositories</Button>
-      {userRepos && userRepos.length > 0
-        ? 'Yes we got your repos'
-        : 'Hit the button man!'}
+      {userRepos && userRepos.length > 0 ? 'Yes we got your repos' : ''}
     </div>
   );
 };

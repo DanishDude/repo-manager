@@ -23,20 +23,16 @@ const ConnectUser = () => {
 
   return (
     <div className="ConnectUser">
-      <div>
-        {avatar_url
-          ? <div>
-              <img src={avatar_url} alt="" />
-              You are connected
-            </div>
-          : <a href={`https://github.com/login/oauth/authorize?scope=user
-              &client_id=${client_id}&redirect_uri=${redirect_uri}`}
-            >
-              Login with Github
-            </a>}
-      </div>
-
-    {/* <Button onClick={() => dispatch(connectUser())}>Connect</Button> */}
+      {avatar_url
+        ? <div>
+            <img src={avatar_url} alt="" />
+            <h6>You are connected to Github !</h6>
+          </div>
+        : <a href={`https://github.com/login/oauth/authorize?scope=user
+            &client_id=${client_id}&redirect_uri=${redirect_uri}`}
+          >
+            Login with Github
+          </a>}
     </div>
   );
 };

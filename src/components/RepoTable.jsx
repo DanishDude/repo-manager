@@ -24,7 +24,7 @@ const RepoTable = () => {
       {!repos.items
         ? <p>Search for any repo :-D</p>
         : <div>
-            <Table striped bordered hover size="sm">
+            <Table striped bordered hover size="sm" responsive>
 
               <thead>
                 <tr>

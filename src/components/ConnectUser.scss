@@ -1,0 +1,9 @@
+.ConnectUser {
+    display: flex;
+    justify-content: center;
+
+    a {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

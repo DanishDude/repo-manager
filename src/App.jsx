@@ -1,22 +1,30 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import ConnectUser from './components/ConnectUser';
 import RepoTable from './components/RepoTable';
 import RepoSearch from './components/RepoSearch';
 import UserRepos from './components/UserRepos';
-import './App.css';
+import './App.scss';
 import './Container.scss';
 
 function App() {
-  // const { isLoggedIn } = useSelector(state => user)
-  // console.log(isLoggedIn);
+  const { isLoggedIn } = useSelector(state => state.user)
+  console.log(isLoggedIn);
 
   return (
     <div className="App">
       <h5>Github Repository Manager</h5>
-      <ConnectUser />
-      <UserRepos />
-      <RepoSearch />
-      <RepoTable />
+
+      <div className="container">
+        <ConnectUser />
+        {isLoggedIn ? <UserRepos /> : ''}
+      </div>
+
+      <div className="container">
+        <RepoSearch />
+        <RepoTable />
+      </div>
+
     </div>
   );
 }
