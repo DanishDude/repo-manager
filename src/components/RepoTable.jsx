@@ -62,9 +62,10 @@ const RepoTable = (props) => {
                   <Button variant="info" onClick={() => getRepoDetails(repo)} >
                     Details
                   </Button>
-                  <Button variant="dark" onClick={() => submitIssue(repo)} >
-                    Submit an Issue
-                  </Button>
+                  {repo.has_issues
+                    ? <Button variant="dark" onClick={() => submitIssue(repo)} >
+                      Submit an Issue
+                    </Button> : ''}
                 </td>
                 <td>
                   <a
