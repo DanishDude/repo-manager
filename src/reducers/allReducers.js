@@ -1,12 +1,14 @@
 import { reducer as formReducer } from 'redux-form';
 import { combineReducers } from 'redux';
-import repo from './repoDetail';
+import issues from './issues';
+import repoDetail from './repoDetail';
 import repoSearch from './repoSearch';
 import user from './user';
 
 export const allReducers = combineReducers({
   form: formReducer,
-  repo,
+  issues,
+  repoDetail,
   repoSearch,
   user
 });

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import ConnectUser from './components/ConnectUser';
-import RepoTable from './components/RepoTable';
+import RepoResults from './components/RepoResults';
 import RepoSearch from './components/RepoSearch';
 import UserRepos from './components/UserRepos';
 import './App.scss';
@@ -9,7 +9,6 @@ import './Container.scss';
 
 function App() {
   const { isLoggedIn } = useSelector(state => state.user)
-  console.log(isLoggedIn);
 
   return (
     <div className="App">
@@ -22,11 +21,11 @@ function App() {
 
       <div className="container">
         <RepoSearch />
-        <RepoTable />
+        <RepoResults />
       </div>
 
     </div>
   );
-}
+};
 
 export default App;

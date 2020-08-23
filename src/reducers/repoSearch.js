@@ -1,7 +1,8 @@
 const initialState = {
   loading: false,
   repos: {},
-  error: ''
+  error: '',
+  limitExceeded: false
 };
 
 const repoSearch = (state = initialState, action) => {
@@ -10,6 +11,8 @@ const repoSearch = (state = initialState, action) => {
       return { ...state, loading: true, };
     case 'SUCCESS_REPO_SEARCH':
       return { ...state, repos: action.repos, loading: false };
+    case 'RATE_LIMIT_EXCEEDED':
+      return { ...state, limitExceeded: true, loading: false };
     case 'ERROR_REPO_SEARCH':
       return { ...state, error: action.error, loading: false };
     default:

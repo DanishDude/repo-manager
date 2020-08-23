@@ -1,9 +1,15 @@
 .ConnectUser {
-    display: flex;
-    justify-content: center;
+  margin: 0 auto;
 
-    a {
-        left: 50%;
-        transform: translateX(-50%);
+  .user-info {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+
+    img {
+      margin: 10px;
+      width: 45px;
     }
+
+  }
 }

@@ -1,11 +1,11 @@
-import React, {  useEffect, useState } from 'react'
-import Button from 'react-bootstrap/Button';
+import React, {  useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { userLogin } from '../actions/user';
+import './ConnectUser.scss';
 
 const ConnectUser = () => {
   const dispatch = useDispatch();
-  const { avatar_url } = useSelector(state => state.user.user);
+  const { avatar_url, login } = useSelector(state => state.user.user);
   const client_id = process.env.REACT_APP_CLIENT_ID;
   const redirect_uri = process.env.REACT_APP_REDIRECT_URI;
 
@@ -19,16 +19,16 @@ const ConnectUser = () => {
       dispatch(userLogin(newUri[1]))
     }
   }, [dispatch]);
-  console.log(redirect_uri);
 
   return (
     <div className="ConnectUser">
-      {avatar_url
-        ? <div>
+      <h6>Manage your Github repositories</h6>
+      {login
+        ? <div className="user-info">
             <img src={avatar_url} alt="" />
-            <h6>You are connected to Github !</h6>
+            <h6>Welcome {login}!</h6>
           </div>
-        : <a href={`https://github.com/login/oauth/authorize?scope=user
+        : <a href={`https://github.com/login/oauth/authorize?scope=repo,user
             &client_id=${client_id}&redirect_uri=${redirect_uri}`}
           >
             Login with Github

@@ -6,7 +6,7 @@ const initialState = {
   error: ''
 };
 
-const repo = (state = initialState, action) => {
+const repoDetail = (state = initialState, action) => {
   switch(action.type) {
     case 'START_FETCH_REPO_DATA':
       return { ...state, loading: true, };
@@ -23,4 +23,4 @@ const repo = (state = initialState, action) => {
   };
 };
 
-export default repo;
+export default repoDetail;

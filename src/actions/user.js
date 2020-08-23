@@ -1,5 +1,3 @@
-import { startRepoSearch } from "./repoSearch";
-
 export const startLogin = () => ({
   type: 'START_LOGIN'
 });
@@ -28,9 +26,8 @@ export const userLogin = code => dispatch => {
     method: 'POST',
     body: JSON.stringify(requestData)
   };
-  console.log('here');
 
-  fetch(proxy_uri, options)
+  fetch(`${proxy_uri}/oauth`, options)
     .then(res => res.json())
     .then(user =>  dispatch(successLogin(user)))
     .catch(err => dispatch(errorLogin(err)));
@@ -51,11 +48,10 @@ export const successFetchUserRepos = userRepos => ({
 });
 
 export const fetchUserRepos = repos_url => dispatch => {
-  dispatch(startRepoSearch());
+  dispatch(startFetchUserRepos());
 
   fetch(repos_url)
     .then(res => res.json())
-    .then(userRepos => {
-      dispatch(successFetchUserRepos(userRepos))})
+    .then(userRepos => dispatch(successFetchUserRepos(userRepos)))
     .catch(err => dispatch(errorFetchUserRepos(err)));
 };

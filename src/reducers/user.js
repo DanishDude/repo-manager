@@ -19,7 +19,7 @@ const user = (state = initialState, action) => {
     case 'SUCCESS_FETCH_USER_REPOS':
       return { ...state, userRepos: action.userRepos, loading: false };
     case 'ERROR_FETCH_USER_REPOS':
-      return { ...state, error: 'Error loading repos!', loading: false };
+      return { ...state, error: { msg: 'Error loading repos!', err: action.err }, loading: false };
     default:
       return state;
   };
