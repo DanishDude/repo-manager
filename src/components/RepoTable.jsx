@@ -86,7 +86,7 @@ const RepoTable = (props) => {
       <RepoDetails
         show={repoDetailsModalShow}
         onHide={() => setRepoDetailsModalShow(false)}
-        repoSummary={repo.name}
+        reponame={repo.name}
       />
       <CreateIssue
         show={issuesModalShow}

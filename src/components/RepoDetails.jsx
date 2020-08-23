@@ -5,7 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 import './RepoDetails.scss';
 
 const RepoDetails = props => {
-  const { repoName, onHide } = props;
+  const { reponame, onHide } = props;
   const { branches, contributors, languages } = useSelector(state => state.repoDetail);
 
   return (
@@ -19,7 +19,7 @@ const RepoDetails = props => {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Repository: {repoName}
+            {reponame}
           </Modal.Title>
         </Modal.Header>
 
