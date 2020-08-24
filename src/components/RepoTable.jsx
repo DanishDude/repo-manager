@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,7 +8,7 @@ import LoginPrompt from './LoginPrompt';
 import RepoDetails from './RepoDetails';
 import './RepoTable.scss';
 
-const RepoTable = (props) => {
+const RepoTable = props => {
   const { options, repos } = props;
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector(state => state.user);

@@ -1,5 +1,3 @@
-import { urlApi } from '../constant';
-
 export const startRepoSearch = () => ({
   type: 'START_REPO_SEARCH'
 });
@@ -22,10 +20,14 @@ export const fetchRepoSearch = (token, search) => dispatch => {
   dispatch(startRepoSearch());
 
   const options = {
-    headers: token ? {Authorization: 'token ' + token} : {}
+    headers: {
+      'Accept': 'application/vnd.github.v3+json',
+      Authorization: token ? 'token ' + token : '',
+      'Content-type': 'application/json'
+    }
   }
 
-  fetch(`${urlApi}/search/repositories?q=${search}`, options)
+  fetch(`https://api.github.com/search/repositories?q=${search}`, options)
     .then(res => res.json())
     .then(payload => {
       if (payload.message && payload.message.startsWith('API rate limit exceeded')) {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { fetchRepoSearch } from '../actions/repoSearch';
@@ -6,7 +6,7 @@ import LoginPrompt from './LoginPrompt';
 import './RepoSearch.scss';
 
 let RepoSearch = () => {
-  const { limitExceeded } = useSelector(state => state.repoSearch)
+  const { limitExceeded } = useSelector(state => state.repoSearch);
   const { token } = useSelector(state => state.user.user);
   const [onChangeAllowed, setOnChangeAllowed] = useState(true);
   const [loginModalShow, setLoginModalShow] = useState(false);

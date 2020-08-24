@@ -1,5 +1,5 @@
-import React, {  useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, {  useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { userLogin } from '../actions/user';
 import './ConnectUser.scss';
 

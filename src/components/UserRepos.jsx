@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Button from 'react-bootstrap/Button'
+import Button from 'react-bootstrap/Button';
 import { fetchUserRepos } from '../actions/user';
 import RepoTable from './RepoTable';
 import './UserRepos.scss';
